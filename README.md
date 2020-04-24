@@ -1,2 +1,2 @@
 # homework3BDA
-This is homework 3 of Business Data Analytics Homework
+This is my homework 3 of Business Data Analytics course in University of Tartu
