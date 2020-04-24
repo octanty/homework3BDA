@@ -1,0 +1,58 @@
+#!pip install imblearn
+
+from imblearn.over_sampling import RandomOverSampler
+ros = RandomOverSampler(random_state=0)
+X_resampled, y_resampled = ros.fit_resample(X, y)
+from collections import Counter
+print(sorted(Counter(y_resampled).items()))
+
+ from imblearn.under_sampling import ClusterCentroids
+ cc = ClusterCentroids(random_state=0)
+ X_resampled, y_resampled = cc.fit_resample(X, y)
+ print(sorted(Counter(y_resampled).items()))
+
+df_class_0_under = df2_class_0.sample(count_class_1)
+df_test_under = pd.concat([df_class_0_under, df2_class_1], axis=0)
+
+print('Random under-sampling:')
+print(df_test_under.Attrition.value_counts())
+
+count_class_0, count_class_1 = df2.Attrition.value_counts()
+
+df2_class_0 = df2[df2['Attrition'] == 0]
+df2_class_1 = df2[df2['Attrition'] == 1]
+
+df_class_1_over = df2_class_1.sample(count_class_0, replace=True)
+df_test_over = pd.concat([df2_class_0, df_class_1_over], axis=0)
+
+print('Random over-sampling:')
+print(df_test_over.Attrition.value_counts())
+
+import matplotlib.pyplot as plt
+x= hr_data.Attrition
+plt.xlabel("ride duration [minutes]", labelpad=14)
+plt.ylabel("relative frequency", labelpad=14)
+plt.title("Relative Frequency Histogram of Duration of Bike Rides (in Minutes)", fontsize=20, y=1.01);
+plt.hist(x, density=True)
+
+
+from sklearn.ensemble import RandomForestClassifier
+model_rf = RandomForestClassifier(n_estimators=1000 , oob_score = True, n_jobs = -1,
+                                  random_state =0, max_features = "auto",
+                                  max_leaf_nodes = 30)
+model_rf.fit(X_train, y_train)
+
+
+prediction_test = model_rf.predict(X_test)
+
+print('Accuracy of Random Forest Classifier on test set: ', metrics.accuracy_score(y_test, prediction_test))
+
+from sklearn import svm
+clf=svm.SVC(probability=True)
+#model.svm = SVC(kernel='linear', random_state=0) 
+#model.svm.fit(X_train,y_train)
+clf.fit(X_test, y_test)
+
+prediction = model_rf.predict(X_test)
+
+print('Accuracy of svm Classifier on test set: ', metrics.accuracy_score(y_test, prediction))
